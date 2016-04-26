@@ -2,18 +2,18 @@
 
 ## 项目结构
 
-> *assets*   -----各种网页资源
-> initdata ----- 初始数据 (可删除)
-> *resource* -----存放壁纸文件
-> common.php -----公共脚本
-> config.php -----项目配置脚本
-> getwallpaper.php -----获取壁纸数据接口
-> index.php -----后台主页
-> initdata.php ----- 初始化项目数据脚本
-> install.php -----安装项目
-> login.php ----- 登录脚本
-> MySQLDB.class.php -----数据库封装类
-> upload.php ----- 上传壁纸脚本
++ *assets*   -----各种网页资源
++ initdata ----- 初始数据 (可删除)
++ *resource* -----存放壁纸文件
++ common.php -----公共脚本
++ config.php -----项目配置脚本
++ getwallpaper.php -----获取壁纸数据接口
++ index.php -----后台主页
++ initdata.php ----- 初始化项目数据脚本
++ install.php -----安装项目
++ login.php ----- 登录脚本
++ MySQLDB.class.php -----数据库封装类
++ upload.php ----- 上传壁纸脚本
 
 ## 如何使用
 
