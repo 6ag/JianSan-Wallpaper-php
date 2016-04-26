@@ -19,7 +19,7 @@ function uploadFile($fileInfo, $pdo) {
     // 上传文件大小2M
     $maxSize = 2097152;
     // 支持的扩展名
-    $allowExtensionNames = ['jpeg', 'jpg', 'png'];
+    $allowExtensionNames = ['jpeg', 'jpg', 'png', 'wbmp'];
     // 图片扩展名
     $extension = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
     // 唯一图片文件名
