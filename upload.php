@@ -7,6 +7,7 @@
  */
 
 include_once 'common.php';
+include_once 'ResizeImage.class.php';
 
 /**
  * 构建上传文件信息数组
@@ -41,7 +42,7 @@ function uploadFile($fileInfo, $pdo) {
     // 图片扩展名
     $extension = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
     // 唯一图片文件名
-    $fileName = md5(uniqid(microtime(true), true)) . '.' . $extension;
+    $fileName = md5(uniqid(microtime(true), true)) . '.png';
     // 门派分类
     $categoryName = $_POST['category'];
 
@@ -85,12 +86,6 @@ function uploadFile($fileInfo, $pdo) {
         return $result;
     }
 
-    // 限制文件类型
-    if (!in_array($extension, $allowExtensionNames)) {
-        $result['message'] = $fileName . '文件类型不允许上传';
-        return $result;
-    }
-
     // 判断上传方式
     if (!is_uploaded_file($fileInfo['tmp_name'])) {
         $result['message'] = $fileName . '不是通过HTTP POST方式上传的';
@@ -109,10 +104,31 @@ function uploadFile($fileInfo, $pdo) {
     // 存放文件路径
     $destination = $path . $fileName;
 
-    // 移动临时文件到指定目录
-    if (!@move_uploaded_file($fileInfo['tmp_name'], $destination)) {
-        $result['message'] = $fileName . '移动到' . $destination . '失败';
+    // 限制文件类型
+    if (!in_array($extension, $allowExtensionNames)) {
+        $result['message'] = $fileName . '文件类型不允许上传';
         return $result;
+    }
+
+    // 转换文件类型
+    if ($extension != "png") {
+        try {
+            $obj = new ReSizeImage();
+            $obj->setSourceFile($fileInfo['tmp_name']);
+            $obj->setDstFile($destination);
+            $obj->setWidth(750);
+            $obj->setHeight(1334);
+            $obj->draw();
+        } catch (Exception $ex) {
+            $result['message'] = '转换图片格式出现异常 ->' . $ex;
+            return $result;
+        }
+    } else {
+        // 移动临时文件到指定目录
+        if (!@move_uploaded_file($fileInfo['tmp_name'], $destination)) {
+            $result['message'] = $fileName . '移动到' . $destination . '失败';
+            return $result;
+        }
     }
 
     // 插入壁纸路径到数据库sql
