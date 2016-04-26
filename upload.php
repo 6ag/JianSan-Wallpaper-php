@@ -6,7 +6,7 @@
  * Time: 13:47
  */
 
-include_once 'MySQLDB.class.php';
+include_once 'common.php';
 
 /**
  * 构建上传文件信息数组
@@ -116,7 +116,7 @@ function uploadFile($fileInfo, $pdo) {
     }
 
     // 插入壁纸路径到数据库sql
-    $sql = "INSERT INTO jf_wallpaper (path) VALUES (\"$destination\")";
+    $sql = "INSERT INTO jf_wallpaper (category, path) VALUES (\"$categoryName\",\"$destination\")";
 
     // 保存壁纸信息到数据库
     if (!$pdo->query($sql)) {
@@ -130,22 +130,8 @@ function uploadFile($fileInfo, $pdo) {
     return $result;
 }
 
-header('context-type:text/html;charset=utf-8');
-
-// 存到数据库
-$pdo = MySQLDB::getInstance(['username' => 'root', 'password' => 'root', 'dbname' => 'jiansan']);
-
-// 创建数据表
-//$createSql = <<<EON
-//CREATE TABLE IF NOT EXISTS jf_wallpaper (
-//    id INT NOT NULL AUTO_INCREMENT KEY,
-//    path VARCHAR(80) NOT NULL
-//)
-//EON;
-//
-//if ($pdo->query($createSql)) {
-//    echo '创建数据表成功';
-//}
+// 检查权限
+checkLogin();
 
 // 上传文件
 // 获取所有文件的信息数组

@@ -122,7 +122,6 @@ class MySQLDB
             return false;
         }
         return $rec[0];    //该数组的第一项。
-
     }
 
     /**
