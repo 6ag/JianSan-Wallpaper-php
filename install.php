@@ -34,6 +34,19 @@ if (!$pdo->query($sql)) {
     exit('创建壁纸数据表失败');
 }
 
+// 创建意见反馈数据表
+$sql = <<<EOF
+CREATE TABLE IF NOT EXISTS jf_feedback (
+    id INT NOT NULL AUTO_INCREMENT KEY,
+    contact VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL
+)
+EOF;
+
+if (!$pdo->query($sql)) {
+    exit('创建意见反馈数据表失败');
+}
+
 // 配置文件里的初始用户
 $username = $config['initUsername'];
 $password = $config['initPassword'];

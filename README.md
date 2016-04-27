@@ -7,6 +7,7 @@
 + *resource* -----存放壁纸文件
 + common.php -----公共脚本
 + config.php -----项目配置脚本
++ feedback.php ----- 反馈信息接口
 + getwallpaper.php -----获取壁纸数据接口
 + index.php -----后台主页
 + initdata.php ----- 初始化项目数据脚本
@@ -53,7 +54,7 @@ return $config = [
 
 登录后台后，可以进行壁纸上传管理。
 
-### APP接口调用
+### APP获取壁纸数据
 
 数据接口: `getwallpaper.php` 
 
@@ -66,6 +67,7 @@ return $config = [
 请求示例:
 
 ```swift
+// 接口 get方式可以拼接参数到url上
 https://xxxx.com/getwallpaper.php?category=tc&currentPage=1
 ```
 
@@ -116,6 +118,36 @@ https://xxxx.com/getwallpaper.php?category=tc&currentPage=1
 		"category": "tc",
 		"path": "resource\/tc\/1e05b061c2e48868c77dd9215e3d34e3.png"
 	}]
+}
+```
+
+### APP提交反馈信息
+
+数据接口: `feedback.php` 
+
+请求方式: `post`
+
+必要参数: `contact` 联系方式， `content` 反馈内容
+
+请求示例:
+
+```swift
+// 接口
+https://xxxx.com/feedback.php
+
+// 参数
+let parameters = [
+            "content" : "这是一条测试反馈内容，应该成功的",
+            "contact" : "44334512"
+        ]
+```
+
+返回示例:
+
+```json
+{
+	"code": 1,
+	"message": "提交反馈成功"
 }
 ```
 
