@@ -47,6 +47,24 @@ if (!$pdo->query($sql)) {
     exit('创建意见反馈数据表失败');
 }
 
+//// 创建fuck AppStore表
+//$sql = <<<EOF
+//CREATE TABLE IF NOT EXISTS jf_fuck (
+//    fuck INT NOT NULL
+//)
+//EOF;
+//
+//if (!$pdo->query($sql)) {
+//    exit('创建fuck表失败');
+//}
+//
+//// 初始化fuck表数据
+//$sql = 'INSERT INTO jf_fuck (fuck) VALUES (0);';
+//
+//if (!$pdo->query($sql)) {
+//    exit('插入fuck数据失败');
+//}
+
 // 配置文件里的初始用户
 $username = $config['initUsername'];
 $password = $config['initPassword'];
