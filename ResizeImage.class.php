@@ -127,7 +127,7 @@ class ResizeImage
         //建立目标图像的句柄
         $this->dim = @imagecreatetruecolor($dstWidth, $dstHeight) or imagecreate($dstWidth, $dstHeight);
         //将真彩色图像转换为调色板图像
-        imagetruecolortopalette($this->sim, false, 256);
+//        imagetruecolortopalette($this->sim, false, 256);
         //根据源图像颜色的总数并把它分配到目标图像上
         $palsize = ImageColorsTotal($this->sim);
         for ($i = 0; $i < $palsize; $i++) {
