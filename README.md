@@ -64,60 +64,83 @@ return $config = [
 
 可选参数: `onePageCount` 每页壁纸数量
 
+可选参数: `news` 随便传个值，调用新接口，返回数据带缩略图字段
+
 请求示例:
 
 ```swift
 // 接口 get方式可以拼接参数到url上
-https://xxxx.com/getwallpaper.php?category=tc&currentPage=1
+http://xxxx.com/getwallpaper.php?new=1&category=tc&currentPage=1
 ```
 
 返回示例:
 
 ```json
 {
-	"code": 1,
-	"message": "成功",
-	"data": [{
-		"id": "163",
-		"category": "tc",
-		"path": "resource\/tc\/23ac9e41b3d47fecaaba83dcd9422765.png"
-	}, {
-		"id": "162",
-		"category": "tc",
-		"path": "resource\/tc\/9d61c30f5f52731f6b1a155651f7bd11.png"
-	}, {
-		"id": "161",
-		"category": "tc",
-		"path": "resource\/tc\/ab1c2956f5ddd95a049f66dcdce96028.png"
-	}, {
-		"id": "160",
-		"category": "tc",
-		"path": "resource\/tc\/4a3fa795911455fca8768aea9d9b68c4.png"
-	}, {
-		"id": "159",
-		"category": "tc",
-		"path": "resource\/tc\/a577eb5c77528f288f9434baf2e46af7.png"
-	}, {
-		"id": "158",
-		"category": "tc",
-		"path": "resource\/tc\/56a1f3ac7ab59d5da9557fb695eb1df0.png"
-	}, {
-		"id": "157",
-		"category": "tc",
-		"path": "resource\/tc\/0811b933654b780ef8d2077b10490bc4.png"
-	}, {
-		"id": "156",
-		"category": "tc",
-		"path": "resource\/tc\/12920de656272b109040a5eda88805fe.png"
-	}, {
-		"id": "155",
-		"category": "tc",
-		"path": "resource\/tc\/5ee1b1039619cc89aa0f7cace730cee0.png"
-	}, {
-		"id": "154",
-		"category": "tc",
-		"path": "resource\/tc\/1e05b061c2e48868c77dd9215e3d34e3.png"
-	}]
+    "code": 1,
+    "message": "成功",
+    "data": [
+        {
+            "id": "336",
+            "category": "tc",
+            "path": "resource/tc/f8e63d65906c06bf89d874d0c5f96c46.png",
+            "smallpath": "resource/tc/smallf8e63d65906c06bf89d874d0c5f96c46.png"
+        },
+        {
+            "id": "335",
+            "category": "tc",
+            "path": "resource/tc/522526abc4fc5399fcb61c594df91b1d.png",
+            "smallpath": "resource/tc/small522526abc4fc5399fcb61c594df91b1d.png"
+        },
+        {
+            "id": "334",
+            "category": "tc",
+            "path": "resource/tc/eaf365f46461b81146f89277a051be46.png",
+            "smallpath": "resource/tc/smalleaf365f46461b81146f89277a051be46.png"
+        },
+        {
+            "id": "305",
+            "category": "tc",
+            "path": "resource/tc/c6cc012aad69628113fcfadf79d7dbf2.png",
+            "smallpath": "resource/tc/smallc6cc012aad69628113fcfadf79d7dbf2.png"
+        },
+        {
+            "id": "304",
+            "category": "tc",
+            "path": "resource/tc/505e4cc96e26f8d86409dc781a092c9b.png",
+            "smallpath": "resource/tc/small505e4cc96e26f8d86409dc781a092c9b.png"
+        },
+        {
+            "id": "270",
+            "category": "tc",
+            "path": "resource/tc/22945d1179e02bd7ba1255714e800286.png",
+            "smallpath": "resource/tc/small22945d1179e02bd7ba1255714e800286.png"
+        },
+        {
+            "id": "252",
+            "category": "tc",
+            "path": "resource/tc/bd4f3c89891f94fd50918d4bc008e8e4.png",
+            "smallpath": "resource/tc/smallbd4f3c89891f94fd50918d4bc008e8e4.png"
+        },
+        {
+            "id": "163",
+            "category": "tc",
+            "path": "resource/tc/a21d4ebb91c1056415e54721ae81a64d.png",
+            "smallpath": "resource/tc/smalla21d4ebb91c1056415e54721ae81a64d.png"
+        },
+        {
+            "id": "162",
+            "category": "tc",
+            "path": "resource/tc/b29c8d991a87e6e552810a9913724fe0.png",
+            "smallpath": "resource/tc/smallb29c8d991a87e6e552810a9913724fe0.png"
+        },
+        {
+            "id": "161",
+            "category": "tc",
+            "path": "resource/tc/8d7815eaf5e9d0d296dd10d2e9cb0931.png",
+            "smallpath": "resource/tc/small8d7815eaf5e9d0d296dd10d2e9cb0931.png"
+        }
+    ]
 }
 ```
 

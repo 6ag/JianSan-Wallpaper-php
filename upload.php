@@ -12,7 +12,8 @@ include_once 'ResizeImage.class.php';
 /**
  * 构建上传文件信息数组
  */
-function getFiles() {
+function getFiles()
+{
     $i = 0;
     $files = [];
     foreach ($_FILES as $file) {
@@ -34,7 +35,8 @@ function getFiles() {
  * @param $pdo      数据库对象
  * @return mixed    返回结果数组
  */
-function uploadFile($fileInfo, $pdo) {
+function uploadFile($fileInfo, $pdo)
+{
     // 上传文件大小2M
     $maxSize = 2097152;
     // 支持的扩展名
@@ -43,6 +45,8 @@ function uploadFile($fileInfo, $pdo) {
     $extension = pathinfo($fileInfo['name'], PATHINFO_EXTENSION);
     // 唯一图片文件名
     $fileName = md5(uniqid(microtime(true), true)) . '.png';
+    // 缩略图文件名
+    $smallFileName = 'small' . $fileName;
     // 门派分类
     $categoryName = $_POST['category'];
 
@@ -101,8 +105,11 @@ function uploadFile($fileInfo, $pdo) {
         }
     }
 
-    // 存放文件路径
+    // 原图存放路径
     $destination = $path . $fileName;
+
+    // 缩略图存放路径
+    $smallDestination = $path . $smallFileName;
 
     // 限制文件类型
     if (!in_array($extension, $allowExtensionNames)) {
@@ -110,29 +117,34 @@ function uploadFile($fileInfo, $pdo) {
         return $result;
     }
 
-    // 转换文件类型
-    if ($extension != "png") {
-        try {
-            $obj = new ReSizeImage();
-            $obj->setSourceFile($fileInfo['tmp_name']);
-            $obj->setDstFile($destination);
-            $obj->setWidth(750);
-            $obj->setHeight(1334);
-            $obj->draw();
-        } catch (Exception $ex) {
-            $result['message'] = '转换图片格式出现异常 ->' . $ex;
-            return $result;
-        }
-    } else {
-        // 移动临时文件到指定目录
-        if (!@move_uploaded_file($fileInfo['tmp_name'], $destination)) {
-            $result['message'] = $fileName . '移动到' . $destination . '失败';
-            return $result;
-        }
+    // 原图
+    try {
+        $obj = new ReSizeImage();
+        $obj->setSourceFile($fileInfo['tmp_name']);
+        $obj->setDstFile($destination);
+        $obj->setWidth(750);
+        $obj->setHeight(1334);
+        $obj->draw();
+    } catch (Exception $ex) {
+        $result['message'] = '转换图片格式出现异常 ->' . $ex;
+        return $result;
+    }
+
+    // 缩略图
+    try {
+        $obj = new ReSizeImage();
+        $obj->setSourceFile($fileInfo['tmp_name']);
+        $obj->setDstFile($smallDestination);
+        $obj->setWidth(187);
+        $obj->setHeight(333);
+        $obj->draw();
+    } catch (Exception $ex) {
+        $result['message'] = '转换图片格式出现异常 ->' . $ex;
+        return $result;
     }
 
     // 插入壁纸路径到数据库sql
-    $sql = "INSERT INTO jf_wallpaper (category, path) VALUES (\"$categoryName\",\"$destination\")";
+    $sql = "INSERT INTO jf_wallpaper (category, path, smallpath) VALUES (\"$categoryName\",\"$destination\",\"$smallDestination\")";
 
     // 保存壁纸信息到数据库
     if (!$pdo->query($sql)) {
