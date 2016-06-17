@@ -33,8 +33,12 @@ function get_wallpaper($category, $currentPage, $onePageCount, $pdo) {
 }
 
 // 处理请求参数
+$category = $_GET['category'];
+$currentPage = $_GET['currentPage'];
+$onePageCount = $_GET['onePageCount'];
+
 // 分类 / 当前页码
-if (@!($category = $_GET['category']) || @!($currentPage = $_GET['currentPage'])) {
+if (empty($category) || empty($currentPage)) {
     $json['code'] = 0;
     $json['message'] = '必要参数缺失';
     $json['data'] = [];
@@ -42,7 +46,7 @@ if (@!($category = $_GET['category']) || @!($currentPage = $_GET['currentPage'])
 }
 
 // 单页数量
-if (@!($onePageCount = $_GET['onePageCount'])) {
+if (empty($onePageCount)) {
     $onePageCount = 10;
 }
 
