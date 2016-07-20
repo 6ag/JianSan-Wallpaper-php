@@ -1,5 +1,11 @@
 # 剑三APP后台管理系统
 
+**此项目已经放弃治疗：** 新版本后台管理系统使用 `laravel` 开发，请看 [jiansan-laravel](https://github.com/6ag/jiansan-laravel) 。     
+
+**此项目已经放弃治疗：** 新版本后台管理系统使用 `laravel` 开发，请看 [jiansan-laravel](https://github.com/6ag/jiansan-laravel) 。      
+
+**此项目已经放弃治疗：** 新版本后台管理系统使用 `laravel` 开发，请看 [jiansan-laravel](https://github.com/6ag/jiansan-laravel) 。    
+
 ## 项目结构
 
 + *assets*   -----各种网页资源
